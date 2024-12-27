@@ -1,0 +1,36 @@
+version: "3.8"
+
+services:
+  backend:
+    image: polyforms-backend:latest
+    build:
+      context: ./ployfroms-backend
+      dockerfile: Dockerfile
+    ports:
+      - "9021:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://10.108.0.2:5430/polyforms
+      SPRING_DATASOURCE_USERNAME: admin
+      SPRING_DATASOURCE_PASSWORD: password
+    restart: always
+    networks:
+      - form-network
+
+  frontend:
+    image: polyforms-ui:latest
+    build:
+      context: ./polyforms-ui
+      dockerfile: Dockerfile
+    ports:
+      - "9022:3000"
+    environment:
+      API_URL: http://backend:8080
+      PUBLIC_APP_DOMAIN: https://forms.oswinjerome.in
+    depends_on:
+      - backend
+    restart: always
+    networks:
+      - form-network
+
+networks:
+  form-network:
