@@ -5,11 +5,11 @@ import Github from "next-auth/providers/github";
 import { authenticateGithub } from "./auth";
 
 export const authOptions: AuthOptions = {
-  secret: "fb03e0db8a8097047b6dccba427337204ab78fdf",
+  secret: process.env.GITHUB_CLIENT_SECRET,
   providers: [
     Github({
-      clientId: "060ffe6badc7fffdfbb2",
-      clientSecret: "fb03e0db8a8097047b6dccba427337204ab78fdf",
+      clientId: process.env.GITHUB_CLIENT_ID,
+      clientSecret: process.env.GITHUB_CLIENT_SECRET,
     }),
   ],
   callbacks: {

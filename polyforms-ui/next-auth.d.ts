@@ -21,3 +21,12 @@ declare module "next-auth/jwt" {
     auth_token: string;
   }
 }
+
+declare global {
+  namespace NodeJS {
+    interface ProcessEnv {
+      GITHUB_CLIENT_ID: string;
+      GITHUB_CLIENT_SECRET: string;
+    }
+  }
+}
