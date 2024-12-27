@@ -65,3 +65,12 @@ export const createSubmission = async (formId: string, fields: FieldState[]) => 
   console.log(processed.data);
   return processed;
 };
+
+export const getFormPublic = async (formId: string) => {
+  const res = await fetchHelper(process.env.API_URL + "/api/v1/public/forms/" + formId, {
+    method: "GET",
+  });
+
+  const processed: APIResponse<Form> = await res.json();
+  return processed;
+};

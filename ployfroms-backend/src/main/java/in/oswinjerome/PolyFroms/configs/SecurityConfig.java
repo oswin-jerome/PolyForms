@@ -39,6 +39,7 @@ public class SecurityConfig {
                 .requestMatchers("/error/**").permitAll()
                 .requestMatchers("/public/**").permitAll()
                 .requestMatchers("/api/v1/public/forms/**").permitAll()
+//                .requestMatchers("/api/v1/forms/{formId}").permitAll()
                 .anyRequest().authenticated());
 
         httpSecurity.httpBasic(Customizer.withDefaults());
